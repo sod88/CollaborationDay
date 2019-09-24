@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Crear Cuenta" icon-name="standard:account">
+        <div style="margin-left: 6%" if:true={error}>
+            <lightning-badge label={error} style="color: red;"></lightning-badge>
+        </div>
+
+        <template if:true={accRecord}>
+            <div class="slds-m-around_x-small">
+                    <div class="form-group">
+                        <lightning-input label="Nombre de Cuenta" name="accName" required="required" type="text" value={accRecord.Name} onchange={handleName}> </lightning-input>               
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Número Telefónico" name="accPhone" type="number" value={accRecord.Phone} onchange={handlePhone}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Industria" name="accEmail" type="text" value={accRecord.Industry} onchange={handleIndustry}></lightning-input>
+                    </div>
+                <br/>
+                <lightning-button label="Submit" onclick={save} variant="brand"></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>
