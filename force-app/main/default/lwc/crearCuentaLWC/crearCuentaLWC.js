@@ -36,20 +36,28 @@ export default class CrearCuentaLWC extends LightningElement {
     }
 
     save(){
-        saveAccount({objAcc : this.accRecord})
-        .then(result => {
-            this.accRecord = {};
+      const allValid = [...this.template.querySelectorAll('lightning-input')]
+            .reduce((validSoFar, inputFields) => {
+                inputFields.reportValidity();
+                return validSoFar && inputFields.checkValidity();
+            }, true);
 
-            window.console.log('result ===> ' + result);
+        if (allValid) {
+            saveAccount({objAcc : this.accRecord})
+            .then(result => {
+                this.accRecord = {};
 
-            this.dispatchEvent(new ShowToastEvent({
-                title: 'Cuenta Creada!',
-                message: 'La cuenta ha sido creado',
-                variant: 'success'
-            }),);
-        })
-        .catch(error => {
-            this.error = error.message;
-        });
+                window.console.log('result ===> ' + result);
+
+                this.dispatchEvent(new ShowToastEvent({
+                    title: 'Cuenta Creada!',
+                    message: 'La cuenta ha sido creado',
+                    variant: 'success'
+                }),);
+            })
+            .catch(error => {
+                this.error = error.message;
+            });
+      }
     }
 }

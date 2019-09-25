@@ -3,14 +3,14 @@
         <div style="margin-left: 6%" if:true={error}>
             <lightning-badge label={error} style="color: red;"></lightning-badge>
         </div>
-
+  
         <template if:true={accRecord}>
             <div class="slds-m-around_x-small">
                     <div class="form-group">
-                        <lightning-input label="Nombre de Cuenta" name="accName" required="required" type="text" value={accRecord.Name} onchange={handleName}> </lightning-input>               
+                        <lightning-input label="Nombre de Cuenta" name="accName" required="required" type="text" value={accRecord.Name} onchange={handleName} message-when-value-missing="Completa este campo."> </lightning-input>               
                     </div>
                     <div class="form-group">
-                        <lightning-input label="Número Telefónico" name="accPhone" type="number" value={accRecord.Phone} onchange={handlePhone}></lightning-input>
+                        <lightning-input label="Número Telefónico" name="accPhone" type="tel" value={accRecord.Phone} onchange={handlePhone} pattern="^\d{10}$" message-when-pattern-mismatch="El campo debe contener exactamente 10 dígitos." message-when-bad-input="Favor de ingresar solo valores númericos."></lightning-input>
                     </div>
                     <div class="form-group">
                         <lightning-input label="Industria" name="accEmail" type="text" value={accRecord.Industry} onchange={handleIndustry}></lightning-input>
@@ -20,4 +20,4 @@
             </div>
         </template>
     </lightning-card>
-</template>
+  </template>
